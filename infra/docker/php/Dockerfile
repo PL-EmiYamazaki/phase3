@@ -4,11 +4,11 @@ LABEL maintainer="ucan-lab <yes@u-can.pro>"
 SHELL ["/bin/bash", "-oeux", "pipefail", "-c"]
 
 # timezone environment
-ENV TZ=UTC \
+ENV TZ=JST \
   # locale
-  LANG=en_US.UTF-8 \
-  LANGUAGE=en_US:en \
-  LC_ALL=en_US.UTF-8 \
+  LANG="ja_JP.UTF-8" \
+  LANGUAGE="ja_JP:ja" \
+  LC_ALL="ja_JP.UTF-8" \
   # composer environment
   COMPOSER_ALLOW_SUPERUSER=1 \
   COMPOSER_HOME=/composer
