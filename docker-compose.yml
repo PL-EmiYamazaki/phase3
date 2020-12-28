@@ -19,15 +19,17 @@ services:
       - DB_PASSWORD=${DB_PASS:-secret}
 
   db:
-    build:
-      context: .
-      dockerfile: ./infra/docker/mysql/Dockerfile
-    ports:
-      - ${DB_PORT:-3306}:3306
-    volumes:
-      - db-store:/var/lib/mysql
+    build: ./infra/docker/mysql
+    image: mysql:5.7
+    restart: always
     environment:
-      - MYSQL_DATABASE=${DB_NAME:-laravel_local}
-      - MYSQL_USER=${DB_USER:-phper}
-      - MYSQL_PASSWORD=${DB_PASS:-secret}
-      - MYSQL_ROOT_PASSWORD=${DB_PASS:-secret}
+      MYSQL_DATABASE: laravel_local
+      MYSQL_USER: phper
+      MYSQL_PASSWORD: secret
+      MYSQL_ROOT_PASSWORD: mysql
+    ports:
+      - "3314:3306"
+    volumes:
+      - ./docker/mysql/initdb.d:/docker-entrypoint-initdb.d
+      - ./docker/mysql/conf.d:/etc/mysql/conf.d
+      - ./log/mysql:/var/log/mysql

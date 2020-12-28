@@ -1,6 +1,4 @@
-FROM mysql:8.0
-LABEL maintainer="ucan-lab <yes@u-can.pro>"
+FROM mysql:5.7
 
-ENV TZ=UTC
+ENV TZ=JST
 
-COPY ./infra/docker/mysql/my.cnf /etc/my.cnf
